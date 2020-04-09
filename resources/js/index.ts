@@ -1,3 +1,3 @@
-import IndexUI from './modules/IndexUI';
+import ModalUI from './modules/modal/ModalUI';
 
-new IndexUI();
+new ModalUI('.modal', '.js-modal-open', '.js-modal-close');

@@ -1,10 +1,18 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "es5",
-    "module": "es2015",
-    "strict": true
+    "target": "ESNEXT",
+    "module": "ESNext",
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./js/*"],
+      "~": ["./js"]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "moduleResolution": "node",
+  "esModuleInterop": true
 }
