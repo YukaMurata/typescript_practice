@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal_ModalUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal/ModalUI */ \"./js/modules/modal/ModalUI.ts\");\n\nnew _modules_modal_ModalUI__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('.modal', '.js-modal-open', '.js-modal-close');\n\n\n//# sourceURL=webpack:///./js/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal_ModalUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal/ModalUI */ \"./js/modules/modal/ModalUI.ts\");\n/* harmony import */ var _modules_scrollToTarget_ScrollToTarget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scrollToTarget/ScrollToTarget */ \"./js/modules/scrollToTarget/ScrollToTarget.ts\");\n\n\nnew _modules_modal_ModalUI__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('.modal', '.js-modal-open', '.js-modal-close');\nnew _modules_scrollToTarget_ScrollToTarget__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n\n\n//# sourceURL=webpack:///./js/index.ts?");
 
 /***/ }),
 
@@ -107,6 +107,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return ModalUI; });\n/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ \"./node_modules/animejs/lib/anime.es.js\");\n\nclass ModalUI {\n    constructor($modal, $openButtons, $closeButtons) {\n        this.$modal = document.querySelector($modal);\n        this.$openButtons = Array.from(document.querySelectorAll($openButtons));\n        this.$closeButtons = Array.from(document.querySelectorAll($closeButtons));\n        this.bind();\n    }\n    bind() {\n        this.$openButtons.forEach(($openButton) => {\n            $openButton.addEventListener('click', () => {\n                this.open();\n            });\n        });\n        this.$closeButtons.forEach(($closeButton) => {\n            $closeButton.addEventListener('click', () => {\n                this.close();\n            });\n        });\n    }\n    open() {\n        if (!this.$modal)\n            return;\n        this.$modal.style.display = 'block';\n        Object(animejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\n            targets: this.$modal,\n            opacity: 1\n        });\n    }\n    close() {\n        Object(animejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\n            targets: this.$modal,\n            opacity: 0,\n            complete: () => {\n                if (!this.$modal)\n                    return;\n                this.$modal.style.display = 'none';\n            }\n        });\n    }\n}\n\n\n//# sourceURL=webpack:///./js/modules/modal/ModalUI.ts?");
+
+/***/ }),
+
+/***/ "./js/modules/scrollToTarget/ScrollToTarget.ts":
+/*!*****************************************************!*\
+  !*** ./js/modules/scrollToTarget/ScrollToTarget.ts ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return ScrollToTarget; });\n/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ \"./node_modules/animejs/lib/anime.es.js\");\n\nclass ScrollToTarget {\n    constructor() {\n        this.$scrollButtons = Array.from(document.querySelectorAll('.js-scroll-target'));\n        this.bind();\n    }\n    /**\n     * イベント付与\n     */\n    bind() {\n        this.$scrollButtons.forEach(($scrollButton) => {\n            $scrollButton.addEventListener('click', e => {\n                console.log(e.currentTarget);\n                const target = e.currentTarget;\n                if (target instanceof HTMLAnchorElement) {\n                    const $target = document.body;\n                    if ($target) {\n                        e.preventDefault();\n                        this.scroll($target.getBoundingClientRect().top);\n                    }\n                }\n            });\n        });\n    }\n    /**\n     * スクロール\n     * @param scrollTop\n     */\n    scroll(scrollTop) {\n        Object(animejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\n            targets: 'html, body',\n            scrollTop: scrollTop,\n            duration: 400,\n            easing: 'easeInOutSine'\n        });\n    }\n}\n\n\n//# sourceURL=webpack:///./js/modules/scrollToTarget/ScrollToTarget.ts?");
 
 /***/ }),
 

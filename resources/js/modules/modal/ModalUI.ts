@@ -13,13 +13,13 @@ export default class ModalUI {
   }
 
   bind(): void {
-    this.$openButtons.forEach(($openButton) => {
+    this.$openButtons.forEach(($openButton: HTMLElement) => {
       $openButton.addEventListener('click', () => {
         this.open();
       });
     });
 
-    this.$closeButtons.forEach(($closeButton) => {
+    this.$closeButtons.forEach(($closeButton: HTMLElement) => {
       $closeButton.addEventListener('click', () => {
         this.close();
       });
