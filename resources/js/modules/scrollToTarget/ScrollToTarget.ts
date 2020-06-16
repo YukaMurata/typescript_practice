@@ -14,14 +14,13 @@ export default class ScrollToTarget {
    */
   bind(): void {
     this.$scrollButtons.forEach(($scrollButton: HTMLElement) => {
-      $scrollButton.addEventListener('click', e => {
-        console.log(e.currentTarget);
+      $scrollButton.addEventListener('click', (e) => {
         const target = e.currentTarget;
         if (target instanceof HTMLAnchorElement) {
-          const $target = document.body;
+          const $target = document.querySelector(target.hash);
           if ($target) {
             e.preventDefault();
-            this.scroll($target.getBoundingClientRect().top);
+            this.scroll($target);
           }
         }
       });
@@ -32,12 +31,15 @@ export default class ScrollToTarget {
    * スクロール
    * @param scrollTop
    */
-  scroll(scrollTop: number): void {
-    anime({
-      targets: 'html, body',
-      scrollTop: scrollTop,
-      duration: 400,
-      easing: 'easeInOutSine'
-    });
+  scroll($target: Element) {
+    const $window = window.document.scrollingElement || window.document.body || window.document.documentElement;
+    if ($target instanceof HTMLElement) {
+      anime({
+        targets: $window,
+        scrollTop: $target.offsetTop,
+        duration: 400,
+        easing: 'easeInOutSine'
+      });
+    }
   }
 }
